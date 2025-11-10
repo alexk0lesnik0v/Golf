@@ -5,28 +5,23 @@ using System.Collections;
 
 public class FreeCamera : MonoBehaviour
 {
-
 	public float speed = 1.5f;
 	public float acceleration = 10f;
 	public float sensitivity = 5f; // чувствительность мыши
 	public Camera mainCamera;
-	//public BoxCollider boxCollider;
-
+	
 	private Rigidbody body;
 	private float rotY;
 	private Vector3 direction;
 
-	void Start()
+	private void Start()
 	{
 		body = GetComponent<Rigidbody>();
 		body.freezeRotation = true;
 		body.useGravity = false;
 		body.mass = 0.1f;
 		body.linearDamping = 10;
-
-		//SetBoxColliderSize();
 	}
-
 	
 	public void Move()
 	{
@@ -46,7 +41,7 @@ public class FreeCamera : MonoBehaviour
 		direction = mainCamera.transform.TransformDirection(direction);
 	}
 
-	void FixedUpdate()
+	private void FixedUpdate()
 	{
 		body.AddForce(direction.normalized * speed * acceleration);
 

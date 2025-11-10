@@ -5,9 +5,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private FreeCamera m_camera;
     [SerializeField] private GameObject m_uiPanel;
     [SerializeField] private CloudController m_cloudController;
-    void Update()
+    private void Update()
     {
-
         if (m_uiPanel.activeSelf)
         {
             return;
