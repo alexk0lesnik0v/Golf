@@ -8581,6 +8581,7 @@ MonoBehaviour:
   m_camera: {fileID: 965809335}
   m_uiPanel: {fileID: 653698883}
   m_cloudController: {fileID: 2135836872}
+  m_toolsController: {fileID: 924752877}
 --- !u!4 &924752876
 Transform:
   m_ObjectHideFlags: 0
