@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
         m_camera.Move();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             m_cloudController.MoveNext();
         }
