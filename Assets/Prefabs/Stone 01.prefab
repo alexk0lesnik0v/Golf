@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 379177761298295754}
   - component: {fileID: -3504428927023684203}
   - component: {fileID: 4340613732848457259}
+  - component: {fileID: -3665022302077867833}
   m_Layer: 0
   m_Name: Stone 01
   m_TagString: Untagged
@@ -140,3 +141,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7110966a22a1bd74c894def7bbb4b8cb, type: 3}
+--- !u!114 &-3665022302077867833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358192362031321424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2711b07315a47244800d2a190b513a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
