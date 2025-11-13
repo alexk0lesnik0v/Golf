@@ -7,10 +7,10 @@ namespace Golf
         [SerializeField] private GameObject[] m_prefabs;
         [SerializeField] private Transform m_spawnPoint;
 
-        public void Spawn()
+        public GameObject Spawn()
         {
             var prefab = m_prefabs[Random.Range(0, m_prefabs.Length)];
-            Instantiate(prefab, m_spawnPoint.position, m_spawnPoint.rotation);
+            return Instantiate(prefab, m_spawnPoint.position, m_spawnPoint.rotation);
         }
     }
 }

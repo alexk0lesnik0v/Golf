@@ -4,23 +4,21 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {
-        [SerializeField] private float m_minAnglesZ = -30;
-        [SerializeField] private float m_maxAnglesZ = 30;
+        [SerializeField] private float m_minAngleZ = -30;
+        [SerializeField] private float m_maxAngleZ = 30;
         [SerializeField] [Min(0)] private float m_speed;
         
-        private void Update()
+        private void FixedUpdate()
         {
-            
-            
             var angles =  transform.localEulerAngles;
             
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                angles.z = Rotate(angles.z, m_minAnglesZ);
+                angles.z = Rotate(angles.z, m_minAngleZ);
             }
             else
             {
-                angles.z = Rotate(angles.z, m_maxAnglesZ);
+                angles.z = Rotate(angles.z, m_maxAngleZ);
             }
             transform.localEulerAngles = angles;
         }
@@ -30,5 +28,4 @@ namespace Golf
             return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.deltaTime);
         }
     }
-
 }
