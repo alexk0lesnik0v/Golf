@@ -17069,6 +17069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50982b12882148f8b95b426029ce7346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.LavelController
+  m_maxHitCount: 3
   m_missedCount: 3
   m_spawnRate: 2
   m_stoneSpawner: {fileID: 953732923}
