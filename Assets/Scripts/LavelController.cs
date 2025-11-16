@@ -45,6 +45,7 @@ namespace Golf
             stone.Missed -= OnMissed;
 
             m_currentHitCount++;
+            Debug.Log("Score: " + m_currentHitCount + "/" + m_maxHitCount);
             if (m_currentHitCount >= m_maxHitCount)
             {
                 m_showWinScreen =  true;
