@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Golf
@@ -14,13 +13,9 @@ namespace Golf
 
         private void Awake()
         {
-            
+            m_currentMissedCount = m_missedCount;
         }
-
-        private void Start()
-        {
-            m_time = m_spawnRate;
-        }
+        
 
         private void Update()
         {
@@ -28,7 +23,7 @@ namespace Golf
             
             if (m_time >= m_spawnRate)
             {
-                StoneController stone = m_stoneSpawner.Spawn();
+                Stone stone = m_stoneSpawner.Spawn();
 
                 stone.Hit += OnHitStone;
                 stone.Missed += OnMissed;
@@ -37,7 +32,7 @@ namespace Golf
             }
         }
 
-        private void OnHitStone(StoneController stone)
+        private void OnHitStone(Stone stone)
         {
             stone.Hit -= OnHitStone;
             stone.Missed -= OnMissed;
@@ -45,7 +40,7 @@ namespace Golf
             Debug.Log("Score");
         }
         
-        private void OnMissed(StoneController stone)
+        private void OnMissed(Stone stone)
         {
             stone.Hit -= OnHitStone;
             stone.Missed -= OnMissed;

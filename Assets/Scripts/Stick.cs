@@ -4,13 +4,13 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {
-        [SerializeField] [Min(0)] private float m_power;
+        [SerializeField] [Min(0)] private float m_power = 250;
         [SerializeField] private Transform m_point;
         [SerializeField] private float m_minAngleZ = -30;
         [SerializeField] private float m_maxAngleZ = 30;
         [SerializeField] [Min(0)] private float m_speed;
         
-        
+        private Vector3 m_direction;
         private Vector3 m_LastPointPosition;
         
         private void FixedUpdate()
@@ -25,6 +25,7 @@ namespace Golf
             {
                 angles.z = Rotate(angles.z, m_maxAngleZ);
             }
+            
             transform.localEulerAngles = angles;
             
             m_direction = (m_point.position - m_LastPointPosition).normalized;
@@ -39,9 +40,9 @@ namespace Golf
         
         public void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.TryGetComponent<StoneController>(out var stoneController))
+            if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                stoneController.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Force);
+                stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Force);
             }
            
         }
