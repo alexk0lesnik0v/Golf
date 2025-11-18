@@ -10,14 +10,15 @@ namespace Golf
         [SerializeField] private float m_maxAngleZ = 30;
         [SerializeField] [Min(0)] private float m_speed;
         
+        private bool m_isDown;
         private Vector3 m_direction;
         private Vector3 m_LastPointPosition;
-        
+       
         private void FixedUpdate()
         {
             var angles =  transform.localEulerAngles;
             
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (m_isDown)
             {
                 angles.z = Rotate(angles.z, m_minAngleZ);
             }
@@ -32,6 +33,10 @@ namespace Golf
             m_LastPointPosition = m_point.position;
         }
 
+       public void Down() => m_isDown = true;
+       
+       public void Up() => m_isDown = false;
+        
         private float Rotate(float angleZ, float target)
         {
             return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.deltaTime);
@@ -42,7 +47,7 @@ namespace Golf
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                stone.GetComponent<Rigidbody>().AddForce(m_power * m_direction, ForceMode.Force);
+                stone.AddForce(m_direction * m_power);
             }
            
         }

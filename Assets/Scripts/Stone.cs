@@ -3,12 +3,20 @@ using UnityEngine;
 
 namespace Golf
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Stone : MonoBehaviour
     {
         public event Action<Stone> Hit;
         public event Action<Stone> Missed;
         
-       public void OnCollisionEnter(Collision other)
+        private Rigidbody m_rigidbody;
+
+        private void Awake()
+        {
+            m_rigidbody = GetComponent<Rigidbody>();
+        }
+
+        public void OnCollisionEnter(Collision other)
        {
            if (other.gameObject.GetComponent<Stick>())
            {
@@ -18,6 +26,11 @@ namespace Golf
            {
                Missed?.Invoke(this);
            }
+       }
+
+       public void AddForce(Vector3 force) => m_rigidbody.AddForce(force);
+       {
+           m_rigidbody.AddForce(power * ForceMode.Force);
        }
     }
 }

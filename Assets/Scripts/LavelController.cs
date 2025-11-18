@@ -6,10 +6,13 @@ namespace Golf
 {
     public class LavelController : MonoBehaviour
     {
+        public event Action Finished;
+        
         [SerializeField] private int m_maxHitCount;
         [SerializeField] private int m_missedCount;
         [SerializeField] [Min(0)] private float m_spawnRate = 0.5f;
         [SerializeField] private StoneSpawner m_stoneSpawner;
+        [SerializeField] private ScoreManager m_scoreManager;
         
         private float m_time;
         private int m_currentHitCount = 0;
@@ -41,23 +44,25 @@ namespace Golf
 
         private void OnHitStone(Stone stone)
         {
-            stone.Hit -= OnHitStone;
-            stone.Missed -= OnMissed;
+           UnsubscribeStone(stone);
 
-            m_currentHitCount++;
+            //m_currentHitCount++;
             Debug.Log("Score: " + m_currentHitCount + "/" + m_maxHitCount);
-            if (m_currentHitCount >= m_maxHitCount)
+            m_scoreManager.Increase();
+            
+            
+           /* if (m_currentHitCount >= m_maxHitCount)
             {
                 m_showWinScreen =  true;
                 Time.timeScale = 0f;
                 Debug.Log("You won!!!");
             }
+            */
         }
         
         private void OnMissed(Stone stone)
         {
-            stone.Hit -= OnHitStone;
-            stone.Missed -= OnMissed;
+            UnsubscribeStone(stone);
 
             m_currentMissedCount--;
             if (m_currentMissedCount <= 0)
@@ -72,6 +77,12 @@ namespace Golf
         {
             SceneManager.LoadScene(0);
             Time.timeScale = 1.0f;
+        }
+
+        private void UnsubscribeStone(Stone stone)
+        {
+            stone.Hit -= OnHitStone;
+            stone.Missed -= OnMissed;
         }
         
         private void OnGUI()
