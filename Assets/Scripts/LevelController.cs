@@ -37,7 +37,8 @@ namespace Golf
                 Stone stone = m_stoneSpawner.Spawn();
                 m_stones.Add(stone);
 
-                UnsubscribeStone(stone);
+                stone.Hit += OnHitStone;
+                stone.Missed += OnMissed;
                 
                 m_time = 0;
             }

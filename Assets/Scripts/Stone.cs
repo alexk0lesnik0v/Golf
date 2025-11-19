@@ -13,7 +13,7 @@ namespace Golf
 
         private void Awake()
         {
-            m_rigidbody = GetComponent<Rigidbody>();
+           m_rigidbody = GetComponent<Rigidbody>();
         }
 
         public void OnCollisionEnter(Collision other)
