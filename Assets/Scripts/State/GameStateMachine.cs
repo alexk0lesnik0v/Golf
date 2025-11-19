@@ -5,25 +5,42 @@ namespace Golf
     public class GameStateMachine : MonoBehaviour
     {
         [SerializeField] private MainMenuState m_mainMenuState;
-        [SerializeField] private GamePlayState m_gamePlayState;
-
+        [SerializeField] private GameplayState m_gameplayState;
+        [SerializeField] private BootstrapState m_bootStrapState;
+        [SerializeField] private GameOverState m_gameOverState;
 
         private void Awake()
         {
             m_mainMenuState.Initialize(this);
-            m_gamePlayState.Initialize(this);
+            m_gameplayState.Initialize(this);
+            m_bootStrapState.Initialize(this);
+            m_gameOverState.Initialize(this);
         }
 
-        private void Start()
-        {
-            Enter<MainMenuState>();
-        }
-        
+        private void Start() => Enter<BootstrapState>();
+
         public void Enter<T>()
         {
-            if (typeof(T) == typeof(GamePlayState))
+            if (typeof(T) == typeof(BootstrapState))
             {
-                m_gamePlayState.Enter();
+                m_bootStrapState.Enter();
+            }
+            else if (typeof(T) == typeof(MainMenuState))
+            {
+                m_gameOverState.Exit();
+                m_bootStrapState.Exit();
+                
+                m_mainMenuState.Enter();
+            }
+            else if (typeof(T) == typeof(GameplayState))
+            {
+                m_mainMenuState.Exit();
+                m_gameplayState.Enter();
+            }
+            else if (typeof(T) == typeof(GameOverState))
+            {
+                m_gameplayState.Exit();
+                m_gameOverState.Enter();
             }
         }
     }

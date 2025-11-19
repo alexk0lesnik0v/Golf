@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Golf
 {
-    public class BootStrapState : MonoBehaviour
+    public class BootstrapState : MonoBehaviour
     {
-        [SerializeField] private LavelController m_lavelController;
+        [SerializeField] private LevelController m_levelController;
         [SerializeField] private PlayerController m_playerController;
         
         private GameStateMachine m_gameStateMachine;
@@ -12,7 +12,7 @@ namespace Golf
         public void Initialize(GameStateMachine gameStateMachine)
         {
             m_playerController.enabled = false;
-            m_lavelController.enabled = false;
+            m_levelController.enabled = false;
             
             m_gameStateMachine = gameStateMachine;
         }
@@ -22,9 +22,6 @@ namespace Golf
             m_gameStateMachine.Enter<MainMenuState>();
         }
 
-        public void Exit()
-        {
-            
-        }
+        public void Exit() { }
     }
 }

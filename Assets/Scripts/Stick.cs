@@ -33,23 +33,22 @@ namespace Golf
             m_LastPointPosition = m_point.position;
         }
 
-       public void Down() => m_isDown = true;
+        public void Down() => m_isDown = true;
        
-       public void Up() => m_isDown = false;
-        
+        public void Up() => m_isDown = false;
+       
+        public void OnCollisionEnter(Collision other)
+       {
+           if (other.gameObject.TryGetComponent<Stone>(out var stone))
+           {
+               stone.AddForce(m_power * m_direction);
+           }
+       }
+       
         private float Rotate(float angleZ, float target)
         {
             return Mathf.MoveTowardsAngle(angleZ, target, m_speed * Time.deltaTime);
             
-        }
-        
-        public void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.TryGetComponent<Stone>(out var stone))
-            {
-                stone.AddForce(m_direction * m_power);
-            }
-           
         }
     }
 }

@@ -28,9 +28,7 @@ namespace Golf
            }
        }
 
-       public void AddForce(Vector3 force) => m_rigidbody.AddForce(force);
-       {
-           m_rigidbody.AddForce(power * ForceMode.Force);
-       }
+       public void AddForce(Vector3 power) => 
+           m_rigidbody.AddForce(power, ForceMode.Force);
     }
 }
