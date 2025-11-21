@@ -47,14 +47,27 @@ namespace Golf
         private void OnHitStone(Stone stone)
         {
            UnsubscribeStone(stone);
-           m_scoreManager.Increase();
+           if (stone.CompareTag("GoldStone"))
+           {
+               m_scoreManager.BonusIncrease();
+           }
+           else if (stone.CompareTag("DecreaseStone"))
+           {
+               m_scoreManager.Decrease();
+           }
+           else m_scoreManager.Increase();
         }
         
         private void OnMissed(Stone stone)
         {
             UnsubscribeStone(stone);
 
-            m_currentMissedCount--;
+            if (stone.CompareTag("DecreaseStone"))
+            {
+                Destroy(stone.gameObject);
+            }
+            else m_currentMissedCount--;
+            
             if (m_currentMissedCount <= 0)
             {
                Debug.Log("Game Over");

@@ -21,6 +21,17 @@ namespace Golf
         }
       
         public void Increase() => score++;
+        
+        public void BonusIncrease() => score += 2;
+
+        public void Decrease()
+        {
+            if (score > 0)
+            {
+                score--;
+            }
+            else score = 0;
+        }
 
         public void Reset() => score = 0;
     }
