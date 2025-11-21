@@ -77,6 +77,8 @@ namespace Golf
            {
                m_scoreManager.Decrease();
                currentHitCount = 0;
+               m_currentMissedCount--;
+               FinishedController();
            }
            else if (currentHitCount >= 3)
            {
@@ -99,24 +101,29 @@ namespace Golf
                 currentHitCount = 0;
             }
             
-            if (m_currentMissedCount <= 0)
-            {
-               Debug.Log("Game Over");
-               Finished?.Invoke();
-
-               foreach (var item in m_stones)
-               {
-                   Destroy(item.gameObject);
-               }
-               
-               m_stones.Clear();
-            }
+            FinishedController();
         }
         
         private void UnsubscribeStone(Stone stone)
         {
             stone.Hit -= OnHitStone;
             stone.Missed -= OnMissed;
+        }
+        
+        private void FinishedController()
+        {
+            if (m_currentMissedCount <= 0)
+            {
+                Debug.Log("Game Over");
+                Finished?.Invoke();
+
+                foreach (var item in m_stones)
+                {
+                    Destroy(item.gameObject);
+                }
+               
+                m_stones.Clear();
+            }
         }
     }
 }
