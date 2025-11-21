@@ -11,10 +11,11 @@ namespace Golf
         public event Action<int> HitChanged;
         
         [SerializeField] private int m_missedCount;
+        [SerializeField] [Min(0)] private float m_spawnRate = 1;
         [SerializeField] private StoneSpawner m_stoneSpawner;
         [SerializeField] private ScoreManager m_scoreManager;
         
-        private float m_spawnRate;
+        private float m_currentSpawnRate;
         private float m_time;
         private List<Stone> m_stones;
         private int m_currentMissedCount;
@@ -39,14 +40,14 @@ namespace Golf
         public void Initialize()
         {
             m_currentMissedCount = m_missedCount;
-            m_spawnRate = 1;
+            m_currentSpawnRate = m_spawnRate;
         }
         
         private void Update()
         {
             m_time += Time.deltaTime;
            
-            if (m_time >= m_spawnRate)
+            if (m_time >= m_currentSpawnRate)
             {
                 Stone stone = m_stoneSpawner.Spawn();
                 if (!stone.CompareTag("DecreaseStone"))
@@ -89,11 +90,11 @@ namespace Golf
            
            if (m_stones.Count == 5 || m_stones.Count == 10 || m_stones.Count == 15 || m_stones.Count == 20)
            {
-               if (m_spawnRate > 0.2f)
+               if (m_currentSpawnRate > 0.2f)
                {
-                   m_spawnRate -= 0.2f;
+                   m_currentSpawnRate -= 0.2f;
                }
-               else m_spawnRate = 0.2f;
+               else m_currentSpawnRate = 0.2f;
            }
         }
         
