@@ -24,6 +24,14 @@ namespace Golf
         public override void Enter()
         {
             m_scoreText.text = m_scoreManager.score.ToString();
+
+            var record =PlayerPrefs.GetInt(GlobalConstance.Record, 0);
+
+            if (record < m_scoreManager.score)
+            {
+                PlayerPrefs.SetInt(GlobalConstance.Record, m_scoreManager.score);
+            }
+            
             m_backMainMenu.onClick.AddListener(OnClicked);
             m_gameOverPanel.gameObject.SetActive(true);
         }

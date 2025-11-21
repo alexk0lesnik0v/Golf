@@ -20,7 +20,7 @@ namespace Golf
             var entryUp = new EventTrigger.Entry();
             entryUp.eventID = EventTriggerType.PointerUp;
             
-            entryUp.callback.AddListener(OnPointerUp);
+            //entryUp.callback.AddListener(OnPointerUp);
         }
 
         private void Update()

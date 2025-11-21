@@ -17,10 +17,16 @@ namespace Golf
 
         private void Awake()
         {
-            m_mainMenuState.Initialize(this);
+            foreach (StateBase state in m_states)
+            {
+                state.Initialize(this);
+            }
+            
+            /*m_mainMenuState.Initialize(this);
             m_gameplayState.Initialize(this);
             m_bootStrapState.Initialize(this);
             m_gameOverState.Initialize(this);
+            */
         }
 
         private void Start() => Enter<BootstrapState>();

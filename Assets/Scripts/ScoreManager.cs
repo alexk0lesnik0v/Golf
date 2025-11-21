@@ -19,6 +19,21 @@ namespace Golf
                 ScoreChanged?.Invoke(value);
             }
         }
+
+        public int record
+        {
+            get  => PlayerPrefs.GetInt(GlobalConstance.Record, 0);
+            private set
+            {
+                var temp = PlayerPrefs.GetInt(GlobalConstance.Record, 0);
+
+                if (temp < value)
+                {
+                    PlayerPrefs.SetInt(GlobalConstance.Record, value);
+                    RecordChanged?.Invoke(value);
+                }
+            }
+        }
       
         public void Increase() => score++;
         
@@ -37,6 +52,11 @@ namespace Golf
             else score = 0;
         }
 
+        public void UpdateRecord()
+        {
+            
+        }
+        
         public void Reset() => score = 0;
     }
 }
