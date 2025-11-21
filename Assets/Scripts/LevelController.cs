@@ -8,6 +8,7 @@ namespace Golf
     public class LevelController : MonoBehaviour
     {
         public event Action Finished;
+        public event Action<int> HitChanged;
         
         [SerializeField] private int m_missedCount;
         [SerializeField] [Min(0)] private float m_spawnRate = 0.5f;
@@ -16,8 +17,19 @@ namespace Golf
         
         private float m_time;
         private List<Stone> m_stones;
-        private int m_currentHitCount;
         private int m_currentMissedCount;
+        
+        private int m_currentHitCount;
+
+        public int currentHitCount
+        {
+            get  => m_currentHitCount;
+            private set
+            {
+                m_currentHitCount = value;
+                HitChanged?.Invoke(value);
+            }
+        }
        
         private void Awake()
         {
@@ -36,8 +48,11 @@ namespace Golf
             if (m_time >= m_spawnRate)
             {
                 Stone stone = m_stoneSpawner.Spawn();
-                m_stones.Add(stone);
-
+                if (!stone.CompareTag("DecreaseStone"))
+                {
+                    m_stones.Add(stone); 
+                }
+                
                 stone.Hit += OnHitStone;
                 stone.Missed += OnMissed;
                 
@@ -48,11 +63,11 @@ namespace Golf
         private void OnHitStone(Stone stone)
         {
            UnsubscribeStone(stone);
-           m_currentHitCount++;
+           currentHitCount++;
            
            if (stone.CompareTag("GoldStone"))
            {
-               if (m_currentHitCount >= 3)
+               if (currentHitCount >= 3)
                {
                    m_scoreManager.GoldComboIncrease();
                }
@@ -61,9 +76,9 @@ namespace Golf
            else if (stone.CompareTag("DecreaseStone"))
            {
                m_scoreManager.Decrease();
-               m_currentHitCount = 0;
+               currentHitCount = 0;
            }
-           else if (m_currentHitCount >= 3)
+           else if (currentHitCount >= 3)
            {
                m_scoreManager.ComboIncrease();
            }
@@ -81,7 +96,7 @@ namespace Golf
             else
             {
                 m_currentMissedCount--;
-                m_currentHitCount = 0;
+                currentHitCount = 0;
             }
             
             if (m_currentMissedCount <= 0)

@@ -8,6 +8,7 @@ namespace Golf
     public class GameplayState : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI m_scoreText;
+        [SerializeField] private TextMeshProUGUI m_comboText;
         [SerializeField] private ScoreManager m_scoreManager;
         [SerializeField] private LevelController m_levelController;
         [SerializeField] private PlayerController m_playerController;
@@ -17,6 +18,7 @@ namespace Golf
         public void Initialize(GameStateMachine gameStateMachine)
         {
             m_scoreText.gameObject.SetActive(false);
+            m_comboText.gameObject.SetActive(false);
             m_gameStateMachine = gameStateMachine;
         }
         
@@ -27,6 +29,9 @@ namespace Golf
             
             m_scoreText.gameObject.SetActive(true);
             OnScoreChanged(m_scoreManager.score);
+            
+            m_levelController.HitChanged += OnHitChanged;
+            OnHitChanged(m_levelController.currentHitCount);
             
             m_levelController.enabled = true;
             m_playerController.enabled = true;
@@ -43,10 +48,24 @@ namespace Golf
             m_levelController.enabled = false;
             m_playerController.enabled = false;
             m_scoreText.gameObject.SetActive(false);
+            m_comboText.gameObject.SetActive(false);
             m_levelController.Finished -= OnFinished;
         }
-        
+
         private void OnScoreChanged(int score) => 
             m_scoreText.text = score.ToString();
+
+        private void OnHitChanged(int currentHitCount)
+        {
+            if (currentHitCount >= 3)
+            {
+                m_comboText.text = "combo X" + currentHitCount.ToString();
+                m_comboText.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_comboText.gameObject.SetActive(false);
+            }
+        } 
     }
 }
