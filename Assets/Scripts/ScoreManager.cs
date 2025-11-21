@@ -23,6 +23,10 @@ namespace Golf
         public void Increase() => score++;
         
         public void BonusIncrease() => score += 2;
+        
+        public void ComboIncrease() => score += 3;
+        
+        public void GoldComboIncrease() => score += 6;
 
         public void Decrease()
         {

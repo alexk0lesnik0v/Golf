@@ -16,6 +16,7 @@ namespace Golf
         
         private float m_time;
         private List<Stone> m_stones;
+        private int m_currentHitCount;
         private int m_currentMissedCount;
        
         private void Awake()
@@ -47,13 +48,24 @@ namespace Golf
         private void OnHitStone(Stone stone)
         {
            UnsubscribeStone(stone);
+           m_currentHitCount++;
+           
            if (stone.CompareTag("GoldStone"))
            {
-               m_scoreManager.BonusIncrease();
+               if (m_currentHitCount >= 3)
+               {
+                   m_scoreManager.GoldComboIncrease();
+               }
+               else m_scoreManager.BonusIncrease();
            }
            else if (stone.CompareTag("DecreaseStone"))
            {
                m_scoreManager.Decrease();
+               m_currentHitCount = 0;
+           }
+           else if (m_currentHitCount >= 3)
+           {
+               m_scoreManager.ComboIncrease();
            }
            else m_scoreManager.Increase();
         }
@@ -61,12 +73,16 @@ namespace Golf
         private void OnMissed(Stone stone)
         {
             UnsubscribeStone(stone);
-
+            
             if (stone.CompareTag("DecreaseStone"))
             {
                 Destroy(stone.gameObject);
             }
-            else m_currentMissedCount--;
+            else
+            {
+                m_currentMissedCount--;
+                m_currentHitCount = 0;
+            }
             
             if (m_currentMissedCount <= 0)
             {
