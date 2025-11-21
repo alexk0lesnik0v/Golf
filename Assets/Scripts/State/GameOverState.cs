@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Golf
 {
-    public class GameOverState : MonoBehaviour
+    public class GameOverState : StateBase
     {
         [SerializeField] private GameObject m_gameOverPanel;
         
@@ -14,21 +14,21 @@ namespace Golf
         
         private GameStateMachine m_gameStateMachine;
 
-        public void Initialize(GameStateMachine gameStateMachine)
+        public override void Initialize(GameStateMachine gameStateMachine)
         {
             m_gameStateMachine =  gameStateMachine;
             
             m_gameOverPanel.gameObject.SetActive(false);
         }
 
-        public void Enter()
+        public override void Enter()
         {
             m_scoreText.text = m_scoreManager.score.ToString();
             m_backMainMenu.onClick.AddListener(OnClicked);
             m_gameOverPanel.gameObject.SetActive(true);
         }
 
-        public void Exit()
+        public override void Exit()
         {
             m_gameOverPanel.gameObject.SetActive(false);
         }

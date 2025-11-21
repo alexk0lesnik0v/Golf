@@ -4,10 +4,16 @@ namespace Golf
 {
     public class GameStateMachine : MonoBehaviour
     {
+        [SerializeField] private StateBase m_stateBase;
+        
         [SerializeField] private MainMenuState m_mainMenuState;
         [SerializeField] private GameplayState m_gameplayState;
         [SerializeField] private BootstrapState m_bootStrapState;
         [SerializeField] private GameOverState m_gameOverState;
+        
+        private StateBase[] m_states;
+
+        private StateBase m_currentState;
 
         private void Awake()
         {
@@ -21,7 +27,20 @@ namespace Golf
 
         public void Enter<T>()
         {
-            if (typeof(T) == typeof(BootstrapState))
+            m_currentState?.Exit();
+
+            foreach (StateBase state in m_states)
+            {
+                if (state.GetType() == typeof(T))
+                {
+                    m_currentState = state;
+                    state.Enter();
+                    
+                   break;
+                }
+            }
+            
+            /*if (typeof(T) == typeof(BootstrapState))
             {
                 m_bootStrapState.Enter();
             }
@@ -42,6 +61,7 @@ namespace Golf
                 m_gameplayState.Exit();
                 m_gameOverState.Enter();
             }
+            */
         }
     }
 }
