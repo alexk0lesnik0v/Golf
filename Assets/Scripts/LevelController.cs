@@ -88,7 +88,7 @@ namespace Golf
            }
            else m_scoreManager.Increase();
            
-           if (m_stones.Count == 5 || m_stones.Count == 10 || m_stones.Count == 15 || m_stones.Count == 20)
+           if (m_stones.Count % 5 == 0)
            {
                if (m_currentSpawnRate > 0.2f)
                {
