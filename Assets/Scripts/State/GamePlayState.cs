@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Golf
 {
-    public class GameplayState : MonoBehaviour
+    public class GameplayState : StateBase
     {
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private TextMeshProUGUI m_comboText;
@@ -15,14 +15,14 @@ namespace Golf
         
         private GameStateMachine m_gameStateMachine;
         
-        public void Initialize(GameStateMachine gameStateMachine)
+        public override void Initialize(GameStateMachine gameStateMachine)
         {
             m_scoreText.gameObject.SetActive(false);
             m_comboText.gameObject.SetActive(false);
             m_gameStateMachine = gameStateMachine;
         }
         
-        public void Enter()
+        public override void Enter()
         {
             m_scoreManager.Reset();
             m_scoreManager.ScoreChanged += OnScoreChanged;
@@ -43,7 +43,7 @@ namespace Golf
         private void OnFinished() => 
             m_gameStateMachine.Enter<GameOverState>();
 
-        public void Exit()
+        public override void Exit()
         {
             m_levelController.enabled = false;
             m_playerController.enabled = false;
