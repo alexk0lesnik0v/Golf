@@ -5601,6 +5601,7 @@ RectTransform:
   - {fileID: 1696183494}
   - {fileID: 826539796}
   - {fileID: 659352662}
+  - {fileID: 2063096194}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6335,7 +6336,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 770119845}
-  - {fileID: 2063096194}
   - {fileID: 1601361343}
   m_Father: {fileID: 624927295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9117,6 +9117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.PlayerController
   m_stick: {fileID: 1031259979}
+  m_hitButton: {fileID: 1601361347}
 --- !u!1001 &930007663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15196,7 +15197,7 @@ GameObject:
   - component: {fileID: 1601361343}
   - component: {fileID: 1601361346}
   - component: {fileID: 1601361345}
-  - component: {fileID: 1601361344}
+  - component: {fileID: 1601361347}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -15224,50 +15225,6 @@ RectTransform:
   m_AnchoredPosition: {x: -100, y: 100}
   m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &1601361344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601361342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1601361345}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1601361345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15306,6 +15263,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601361342}
   m_CullTransparentMesh: 1
+--- !u!114 &1601361347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601361342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates: []
 --- !u!1001 &1603263753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18339,6 +18309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Golf.GameplayState
   m_scoreText: {fileID: 770119846}
   m_comboText: {fileID: 2063096195}
+  m_gameplayPanel: {fileID: 659352661}
   m_scoreManager: {fileID: 8746104}
   m_levelController: {fileID: 1895801649}
   m_playerController: {fileID: 924752877}
@@ -20139,7 +20110,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 659352662}
+  m_Father: {fileID: 624927295}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}

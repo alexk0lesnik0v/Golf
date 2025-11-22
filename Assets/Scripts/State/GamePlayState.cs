@@ -9,6 +9,8 @@ namespace Golf
     {
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private TextMeshProUGUI m_comboText;
+
+        [SerializeField] private GameObject m_gameplayPanel;
         [SerializeField] private ScoreManager m_scoreManager;
         [SerializeField] private LevelController m_levelController;
         [SerializeField] private PlayerController m_playerController;
@@ -17,7 +19,7 @@ namespace Golf
         
         public override void Initialize(GameStateMachine gameStateMachine)
         {
-            m_scoreText.gameObject.SetActive(false);
+            m_gameplayPanel.SetActive(false);
             m_comboText.gameObject.SetActive(false);
             m_gameStateMachine = gameStateMachine;
         }
@@ -27,8 +29,8 @@ namespace Golf
             m_scoreManager.Reset();
             m_scoreManager.ScoreChanged += OnScoreChanged;
             
-            m_scoreText.gameObject.SetActive(true);
             OnScoreChanged(m_scoreManager.score);
+            m_gameplayPanel.SetActive(true);
             
             m_levelController.HitChanged += OnHitChanged;
             OnHitChanged(m_levelController.currentHitCount);
@@ -47,7 +49,7 @@ namespace Golf
         {
             m_levelController.enabled = false;
             m_playerController.enabled = false;
-            m_scoreText.gameObject.SetActive(false);
+            m_gameplayPanel.SetActive(false);
             m_comboText.gameObject.SetActive(false);
             m_levelController.Finished -= OnFinished;
         }
