@@ -86,7 +86,7 @@ namespace Golf
            {
                m_scoreManager.ComboIncrease();
            }
-           else m_scoreManager.Increase();
+           else m_scoreManager.Increase(stone.score);
            
            if (m_stones.Count % 5 == 0)
            {

@@ -6,6 +6,7 @@ namespace Golf
     public class ScoreManager : MonoBehaviour
     {
         public event Action<int> ScoreChanged;
+        public event Action<int> RecordChanged;
 
         private int m_score;
 
@@ -19,14 +20,29 @@ namespace Golf
                 ScoreChanged?.Invoke(value);
             }
         }
-      
-        public void Increase() => score++;
+
+        public int record
+        {
+            get => PlayerPrefs.GetInt(GlobalConstants.Record, 0);
+            private set
+            {
+                if (record < value)
+                {
+                    PlayerPrefs.SetInt(GlobalConstants.Record, value);
+                    RecordChanged?.Invoke(value);
+                }
+            }
+        }
+
+        public void Increase(int value) => score += value;
         
         public void BonusIncrease() => score += 2;
         
         public void ComboIncrease() => score += 3;
         
         public void GoldComboIncrease() => score += 6;
+
+        public void UpdateRecord() => record = score;
 
         public void Decrease()
         {

@@ -24,6 +24,9 @@ namespace Golf
         public override void Enter()
         {
             m_scoreText.text = m_scoreManager.score.ToString();
+
+            m_scoreManager.UpdateRecord();
+            
             m_backMainMenu.onClick.AddListener(OnClicked);
             m_gameOverPanel.gameObject.SetActive(true);
         }
