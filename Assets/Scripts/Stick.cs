@@ -4,11 +4,11 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {
-        [SerializeField] [Min(0)] private float m_power = 250;
+        [SerializeField] [Min(0)] private float m_power = 1000;
         [SerializeField] private Transform m_point;
         [SerializeField] private float m_minAngleZ = -30;
         [SerializeField] private float m_maxAngleZ = 30;
-        [SerializeField] [Min(0)] private float m_speed;
+        [SerializeField] [Min(0)] private float m_speed = 400;
         
         private bool m_isDown;
         private Vector3 m_direction;
