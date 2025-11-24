@@ -9537,7 +9537,7 @@ MonoBehaviour:
   m_prefabs:
   - {fileID: -3665022302077867833, guid: 0cafeeb2dbf20b9478ea8e667312cd63, type: 3}
   - {fileID: 7202307112203496755, guid: b1fdc750d3367474fa0f96e3331d53a4, type: 3}
-  - {fileID: -7022464870472844369, guid: f3269215bfdee4b479212b6ccfa0711d, type: 3}
+  - {fileID: -5022413777067206503, guid: 1e910bb209dbb474fbd479fdf7dd12f6, type: 3}
   - {fileID: -3665022302077867833, guid: 1e1ee5057766f0b4f8b422902a83099c, type: 3}
   m_spawnPoint: {fileID: 953732922}
 --- !u!1 &956939991

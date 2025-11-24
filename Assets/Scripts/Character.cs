@@ -4,16 +4,16 @@ namespace Golf
 {
     public class Character : MonoBehaviour
     {
-        [SerializeField] private Transform m_point;
-        [SerializeField] private float m_minAngleY = -30;
-        [SerializeField] private float m_maxAngleY = 30;
+        //[SerializeField] private Transform m_point;
+        //[SerializeField] private float m_minAngleY = -30;
+        //[SerializeField] private float m_maxAngleY = 30;
         [SerializeField] [Min(0)] private float m_speed = 100;
         
         private bool m_isRight;
         private bool m_isLeft;
         private bool m_isStop;
-        private Vector3 m_direction;
-        private Vector3 m_LastPointPosition;
+        //private Vector3 m_direction;
+        //private Vector3 m_LastPointPosition;
        
         private void FixedUpdate()
         {
@@ -62,9 +62,9 @@ namespace Golf
             m_isLeft = false;
         }
 
-        private float Rotate(float angleY, float target)
+       /* private float Rotate(float angleY, float target)
         {
             return Mathf.MoveTowardsAngle(angleY, target, m_speed * Time.deltaTime);
-        }
+        }*/
     }
 }

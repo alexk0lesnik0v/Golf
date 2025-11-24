@@ -38,20 +38,6 @@ namespace Golf
             m_hitButton.triggers.Add(entryDown);
             m_hitButton.triggers.Add(entryUp);
             
-            /* Right
-            var entryLeft = new EventTrigger.Entry();
-            entryLeft.eventID = EventTriggerType.PointerDown;
-            
-            var entryRight = new EventTrigger.Entry();
-            entryRight.eventID = EventTriggerType.PointerUp;
-            
-            entryRight.callback.AddListener(OnPointerUp);
-            entryLeft.callback.AddListener(OnPointerDown);
-            
-            m_LeftButton.triggers.Add(entryDown);
-            m_RightButton.triggers.Add(entryUp);
-            */
-            
             // Right
             var entryRight = new EventTrigger.Entry();
             entryRight.eventID = EventTriggerType.PointerDown;
@@ -65,7 +51,6 @@ namespace Golf
             m_RightButton.triggers.Add(entryRight);
             m_RightButton.triggers.Add(entryStop);
             
-            
             // Left
             var entryLeft = new EventTrigger.Entry();
             entryLeft.eventID = EventTriggerType.PointerDown;
@@ -78,7 +63,6 @@ namespace Golf
        
         private void Update()
         {
-            //if (Input.GetKey(KeyCode.RightArrow))
             if (m_isDown)
             {
                 m_stick.Down();
@@ -102,16 +86,10 @@ namespace Golf
             }
         }
 
-        private void Down()
-        {
-            m_isDown = true;
-        }
+        private void Down() => m_isDown = true;
 
-        private void Up()
-        {
-            m_isDown = false;
-        }
-        
+        private void Up() => m_isDown = false;
+
         private void Left()
         {
            m_isLeft = true;
@@ -137,19 +115,10 @@ namespace Golf
 
         private void OnPointerUp(BaseEventData arg0) => Up();
         
-        private void OnPointerLeft(BaseEventData arg0)
-        {
-            Left();
-        }
+        private void OnPointerLeft(BaseEventData arg0) => Left();
 
-        private void OnPointerRight(BaseEventData arg0)
-        {
-            Right();
-        }
-        
-        private void OnStop(BaseEventData arg0)
-        {
-            Stop();
-        }
+        private void OnPointerRight(BaseEventData arg0) => Right();
+
+        private void OnStop(BaseEventData arg0) => Stop();
     }
 }
