@@ -21,7 +21,7 @@ namespace Golf.UI
 
         private void OnEnable()
         {
-            OnRecordChanged(m_scoreManager.score);
+            OnRecordChanged(m_scoreManager.record);
             m_scoreManager.RecordChanged += OnRecordChanged;
         }
 

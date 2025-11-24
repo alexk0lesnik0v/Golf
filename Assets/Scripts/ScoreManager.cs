@@ -9,7 +9,7 @@ namespace Golf
         public event Action<int> RecordChanged;
 
         private int m_score;
-
+       
         public int score
         {
             get  => m_score;
@@ -23,7 +23,11 @@ namespace Golf
 
         public int record
         {
-            get => PlayerPrefs.GetInt(GlobalConstants.Record, 0);
+            get
+            {
+                //PlayerPrefs.DeleteKey(GlobalConstants.Record);
+                return PlayerPrefs.GetInt(GlobalConstants.Record, 0);
+            }
             private set
             {
                 if (record < value)
