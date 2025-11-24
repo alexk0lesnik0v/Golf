@@ -9,8 +9,9 @@ namespace Golf
         [SerializeField] private float m_maxAngleY = 30;
         [SerializeField] [Min(0)] private float m_speed = 100;
         
-        private bool m_isRight = false;
-        private bool m_isLeft = false;
+        private bool m_isRight;
+        private bool m_isLeft;
+        private bool m_isStop;
         private Vector3 m_direction;
         private Vector3 m_LastPointPosition;
        
@@ -20,11 +21,15 @@ namespace Golf
             
             if (m_isRight)
             {
-                angles.y = Rotate(angles.y, m_minAngleY);
+                angles.y = Rotate(angles.y, m_maxAngleY);
             }
             else if (m_isLeft)
             {
-                angles.y = Rotate(angles.y, m_maxAngleY);
+                angles.y = Rotate(angles.y, m_minAngleY);
+            }
+            else if (m_isStop)
+            {
+                angles.y = Rotate(angles.y, angles.y);
             }
             
             transform.localEulerAngles = angles;
@@ -37,12 +42,21 @@ namespace Golf
         {
             m_isRight = true;
             m_isLeft = false;
+            m_isStop = false;
         }
 
         public void ToLeft()
         {
             m_isLeft = true;
             m_isRight = false;
+            m_isStop = false;
+        }
+
+        public void ToStop()
+        {
+            m_isStop = true;
+            m_isRight = false;
+            m_isLeft = false;
         }
 
         private float Rotate(float angleY, float target)

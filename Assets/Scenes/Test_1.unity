@@ -6248,12 +6248,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674816976}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.03112535, y: -0.5019554, z: -0.041588683, w: 0.8633322}
-  m_LocalPosition: {x: 65.97, y: 22.638, z: 52.653}
+  m_LocalRotation: {x: -0.026095994, y: -0.59862334, z: -0.04491553, w: 0.7993446}
+  m_LocalPosition: {x: 2.8552158, y: 0.7420002, z: 0.9283733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2916151947902129309}
   m_LocalEulerAnglesHint: {x: -5.48, y: -60.237, z: -2.335}
 --- !u!1001 &676369073
 PrefabInstance:
@@ -19033,7 +19033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50982b12882148f8b95b426029ce7346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.LavelController
-  m_missedCount: 3
+  m_missedCount: 1000
   m_spawnRate: 1
   m_stoneSpawner: {fileID: 953732923}
   m_scoreManager: {fileID: 8746104}
@@ -21257,6 +21257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7278389998360041019, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1145577744}
+    - targetCorrespondingSourceObject: {fileID: 7278389998360041019, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 674816979}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8444477806875324615, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
       insertIndex: -1
@@ -21268,6 +21271,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 867313194}
   - {fileID: 1041431953}
-  - {fileID: 674816979}
   - {fileID: 624927295}
   - {fileID: 1806719914}
