@@ -17,25 +17,28 @@ namespace Golf
        
         private void FixedUpdate()
         {
-            var angles =  transform.localEulerAngles;
+            //var angles =  transform.localEulerAngles;
             
             if (m_isRight)
             {
-                angles.y = Rotate(angles.y, m_maxAngleY);
+                transform.Rotate(0, m_speed * Time.deltaTime, 0);
+                //angles.y = Rotate(angles.y, m_maxAngleY);
             }
             else if (m_isLeft)
             {
-                angles.y = Rotate(angles.y, m_minAngleY);
+                transform.Rotate(0, - m_speed * Time.deltaTime, 0);
+                ///angles.y = Rotate(angles.y, m_minAngleY);
             }
             else if (m_isStop)
             {
-                angles.y = Rotate(angles.y, angles.y);
+                transform.Rotate(0, 0, 0);
+                //angles.y = Rotate(angles.y, angles.y);
             }
             
-            transform.localEulerAngles = angles;
+            ///transform.localEulerAngles = angles;
             
             //m_direction = (m_point.position - m_LastPointPosition).normalized;
-            m_LastPointPosition = m_point.position;
+            //m_LastPointPosition = m_point.position;
         }
 
         public void ToRight()

@@ -6248,13 +6248,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674816976}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.026095994, y: -0.59862334, z: -0.04491553, w: 0.7993446}
-  m_LocalPosition: {x: 2.8552158, y: 0.7420002, z: 0.9283733}
+  m_LocalRotation: {x: -0.03838715, y: -0.8111613, z: -0.034997623, w: 0.5825109}
+  m_LocalPosition: {x: 2.76, y: 0.744, z: 1.575}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2916151947902129309}
-  m_LocalEulerAnglesHint: {x: -5.48, y: -60.237, z: -2.335}
+  m_LocalEulerAnglesHint: {x: -5.826, y: -108.697, z: 1.239}
 --- !u!1001 &676369073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9515,12 +9515,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953732920}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.62025833, y: 3.4878101, z: 1.2996979}
+  m_LocalRotation: {x: -0, y: -0.11588821, z: -0, w: 0.99326223}
+  m_LocalPosition: {x: -0.7, y: 3.5440001, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1806719914}
+  m_Father: {fileID: 2916151947902129309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &953732923
 MonoBehaviour:
@@ -17853,7 +17853,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 924752876}
-  - {fileID: 953732922}
   - {fileID: 1895801648}
   - {fileID: 8746103}
   - {fileID: 985539829}
@@ -21260,6 +21259,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7278389998360041019, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
       insertIndex: -1
       addedObject: {fileID: 674816979}
+    - targetCorrespondingSourceObject: {fileID: 7278389998360041019, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 953732922}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8444477806875324615, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
       insertIndex: -1
