@@ -33,11 +33,5 @@ namespace Golf
         {
             m_gameStateMachine.Enter<GameplayState>();
         }
-        
-        public static void RestartLevel()
-        {
-            SceneManager.LoadScene(0);
-            Time.timeScale = 1;
-        }   
     }
 }

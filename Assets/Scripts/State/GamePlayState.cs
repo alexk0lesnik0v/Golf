@@ -48,10 +48,6 @@ namespace Golf
             {
                 m_gameStateMachine.Enter<WinnerState>();
             }
-            //else if (m_levelController.m_isTraining)
-            //{
-                //m_gameStateMachine.Enter<TrainingOverState>();
-            //}
             else
             {
                 m_gameStateMachine.Enter<GameOverState>();

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -185,14 +183,6 @@ namespace Golf
                 }
                
                 m_stones.Clear();
-                
-                //m_isTraining = false;
-        
-                //m_isWinner = false;
-        
-               // m_zombiesAttack =  false;
-
-                //m_isSpawn = true;
             }
         }
 
@@ -252,15 +242,6 @@ namespace Golf
                     {
                         target.SetActive(true);
                     }
-                    
-                    
-                    //m_isTraining = false;
-        
-                    //m_isWinner = false;
-        
-                    //m_zombiesAttack =  false;
-
-                    //m_isSpawn = true;
                 }
             }
         }
@@ -298,39 +279,25 @@ namespace Golf
 
         public void GameOver()
         {
-            
+
             Finished?.Invoke();
-            
+
             foreach (GameObject enemy in m_enemies)
             {
                 enemy.SetActive(true);
             }
-            
+
             foreach (GameObject target in m_targetBoxes)
             {
                 target.SetActive(true);
             }
-            
+
             foreach (var item in m_stones)
             {
                 Destroy(item.gameObject);
             }
-               
+
             m_stones.Clear();
-            
-            //m_isTraining = false;
-        
-            //m_isWinner = false;
-        
-            //m_zombiesAttack =  false;
-
-            //m_isSpawn = true;
-        }
-
-        public static void RestartLevel()
-        {
-            SceneManager.LoadScene(0);
-            Time.timeScale = 1;
         }
     }
 }
