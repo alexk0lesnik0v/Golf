@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 namespace Golf
@@ -9,6 +11,9 @@ namespace Golf
     {
         public event Action Finished;
         public event Action<int> HitChanged;
+        
+        [SerializeField] private GameObject m_trainingOver;
+        [SerializeField] private Button m_playButton;
         
         [SerializeField] private int m_missedCount;
         [SerializeField] [Min(0)] private float m_spawnRate = 1.5f;
@@ -26,7 +31,13 @@ namespace Golf
         
         private int m_currentHitCount;
         
+        public bool m_isTraining = false;
+        
         public bool m_isWinner = false;
+        
+        private bool m_zombiesAttack =  false;
+
+        private bool m_isSpawn = true;
 
         public int currentHitCount
         {
@@ -42,11 +53,21 @@ namespace Golf
         {
             m_stones = new List<Stone>();
             m_enemies = new List<GameObject>();
+            
+            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in m_foundEnemies)
+            {
+                m_enemies.Add(enemy);
+                enemy.SetActive(false);
+            }
+            
             m_targetBoxes = new List<GameObject>();
         }
 
         public void Initialize()
         {
+            m_trainingOver.SetActive(false);
+            
             m_currentMissedCount = m_missedCount;
             m_currentSpawnRate = m_spawnRate;
         }
@@ -55,7 +76,7 @@ namespace Golf
         {
             m_time += Time.deltaTime;
            
-            if (m_time >= m_currentSpawnRate)
+            if (m_time >= m_currentSpawnRate && m_isSpawn)
             {
                 Stone stone = m_stoneSpawner.Spawn();
                 if (!stone.CompareTag("DecreaseStone"))
@@ -151,39 +172,75 @@ namespace Golf
 
         private void WinningController()
         {
-            m_targetBoxes?.Clear();
-            
-            GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
-            foreach (GameObject target in m_foundTargetBoxes)
+            if (!m_isTraining)
             {
-                m_targetBoxes.Add(target);
+                m_targetBoxes?.Clear();
+            
+                GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
+                foreach (GameObject target in m_foundTargetBoxes)
+                {
+                    m_targetBoxes.Add(target);
+                }
+            
+                if (m_targetBoxes.Count == 0)
+                {
+                    m_isTraining = true;
+                    Debug.Log("Training is over!");
+                    ZombiesAttack();
+                }
             }
             
-            if (m_targetBoxes.Count == 0)
+            if (m_zombiesAttack)
             {
-                m_isWinner = true;
-                Debug.Log("YOU WON!");
-                Finished?.Invoke();
+                m_enemies?.Clear();
+            
+                GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (GameObject enemy in m_foundEnemies)
+                {
+                    m_enemies.Add(enemy);
+                }
+            
+                if (m_enemies.Count == 0)
+                {
+                    m_isWinner = true;
+                    Debug.Log("YOU WON!");
+                    Finished?.Invoke();
                 
-                m_isWinner = false;
+                    m_isWinner = false;
+                    m_zombiesAttack =  false;
+                }
             }
+        }
+
+        private void ZombiesAttack()
+        {
+            m_isSpawn = false;
+            m_trainingOver.SetActive(true);
+            m_playButton.onClick.AddListener(onClicked);
             
-            m_enemies?.Clear();
-            
-            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in m_foundEnemies)
+            foreach (var item in m_stones)
             {
-                m_enemies.Add(enemy);
+                Destroy(item.gameObject);
+            }
+               
+            m_stones.Clear();
+        }
+        
+        private void onClicked()
+        {
+            m_trainingOver.SetActive(false);
+            m_playButton.onClick.RemoveListener(onClicked);
+
+            m_missedCount = 1000;
+            
+            m_isSpawn = true;
+            
+            foreach (GameObject enemy in m_enemies)
+            {
+                enemy.SetActive(true);
             }
             
-            if (m_enemies.Count == 0)
-            {
-                m_isWinner = true;
-                Debug.Log("YOU WON!");
-                Finished?.Invoke();
-                
-                m_isWinner = false;
-            }
+            m_zombiesAttack =  true;
         }
     }
 }
