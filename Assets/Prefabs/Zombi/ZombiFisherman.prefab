@@ -495,7 +495,7 @@ GameObject:
   - component: {fileID: -3887871717235074856}
   m_Layer: 0
   m_Name: ZombiFisherman
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -623,6 +623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e145a777886414481da600294e1942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Enemy
+  m_health: 3
 --- !u!1 &2451156399268360491
 GameObject:
   m_ObjectHideFlags: 0

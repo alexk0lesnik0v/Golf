@@ -20,6 +20,8 @@ namespace Golf
         private List<Stone> m_stones;
         private int m_currentMissedCount;
         
+        private List<GameObject> m_enemies;
+        
         private int m_currentHitCount;
 
         public int currentHitCount
@@ -35,12 +37,19 @@ namespace Golf
         private void Awake()
         {
             m_stones = new List<Stone>();
+            m_enemies = new List<GameObject>();
         }
 
         public void Initialize()
         {
             m_currentMissedCount = m_missedCount;
             m_currentSpawnRate = m_spawnRate;
+
+            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in m_foundEnemies)
+            {
+                m_enemies.Add(enemy);
+            }
         }
         
         private void Update()
