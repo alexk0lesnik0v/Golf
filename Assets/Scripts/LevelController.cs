@@ -23,6 +23,8 @@ namespace Golf
         private List<GameObject> m_enemies;
         
         private int m_currentHitCount;
+        
+        public bool m_isWinner = false;
 
         public int currentHitCount
         {
@@ -162,6 +164,7 @@ namespace Golf
             
             if (m_enemies.Count == 0)
             {
+                m_isWinner = true;
                 Debug.Log("YOU WIN!");
                 Finished?.Invoke();
             }
