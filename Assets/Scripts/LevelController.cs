@@ -105,6 +105,8 @@ namespace Golf
                }
                else m_currentSpawnRate = 0.1f;
            }
+           
+           WinningController();
         }
         
         private void OnMissed(Stone stone)
@@ -122,6 +124,8 @@ namespace Golf
             }
             
             FinishedController();
+            
+            WinningController();
         }
         
         private void UnsubscribeStone(Stone stone)
@@ -143,6 +147,23 @@ namespace Golf
                 }
                
                 m_stones.Clear();
+            }
+        }
+
+        private void WinningController()
+        {
+            m_enemies.Clear();
+            
+            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in m_foundEnemies)
+            {
+                m_enemies.Add(enemy);
+            }
+            
+            if (m_enemies.Count == 0)
+            {
+                Debug.Log("YOU WIN!");
+                Finished?.Invoke();
             }
         }
     }
