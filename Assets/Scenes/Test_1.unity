@@ -21166,10 +21166,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9df25f2cfa4e1f9638d2cb2d950222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Character
-  m_point: {fileID: 1145577744}
-  m_minAngleY: -30
-  m_maxAngleY: 30
   m_speed: 100
+--- !u!95 &2916151947902129311
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2916151947902129306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 1ae73c895084f05408cd49ec3da3cd88, type: 3}
+  m_Controller: {fileID: 9100000, guid: f117bc62a4a40dd4fb18ebf0952eb9e4, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6657512464943745231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21266,6 +21285,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8444477806875324615, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2916151947902129310}
+    - targetCorrespondingSourceObject: {fileID: 8444477806875324615, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2916151947902129311}
   m_SourcePrefab: {fileID: 100100000, guid: 5edd754b3ffbba84cb1b7ffbd22cd920, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
