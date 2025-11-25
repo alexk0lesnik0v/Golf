@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Golf
@@ -32,5 +33,11 @@ namespace Golf
         {
             m_gameStateMachine.Enter<GameplayState>();
         }
+        
+        public static void RestartLevel()
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }   
     }
 }

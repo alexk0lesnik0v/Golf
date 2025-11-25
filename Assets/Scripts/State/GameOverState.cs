@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Golf
@@ -36,6 +37,16 @@ namespace Golf
             m_gameOverPanel.gameObject.SetActive(false);
         }
         
-        private void OnClicked() => m_gameStateMachine.Enter<MainMenuState>();
+        private void OnClicked()
+        {
+            m_gameStateMachine.Enter<MainMenuState>();
+            RestartLevel();
+        }
+        
+        public static void RestartLevel()
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
     }
 }

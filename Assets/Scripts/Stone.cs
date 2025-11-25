@@ -11,16 +11,16 @@ namespace Golf
         public event Action<Stone> Hit;
         public event Action<Stone> Missed;
         
-        [SerializeField] private StoneData[] m_data;
+        ///[SerializeField] private StoneData[] m_data;
         
         private Rigidbody m_rigidbody;
         
-        public int score {  get; private set; }
+        ///public int score {  get; private set; }
 
         private void Awake()
         {
            m_rigidbody = GetComponent<Rigidbody>();
-           score = m_data[Random.Range(0, m_data.Length)].score;
+           //score = m_data[Random.Range(0, m_data.Length)].score;
         }
 
         public void OnCollisionEnter(Collision other)

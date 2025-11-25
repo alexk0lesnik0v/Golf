@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -51,19 +52,9 @@ namespace Golf
        
         private void Awake()
         {
-            
-        }
-
-        public void Initialize()
-        {
-            m_trainingOver.SetActive(false);
-            
-            m_currentMissedCount = m_missedCount;
-            m_currentSpawnRate = m_spawnRate;
-            
             m_stones = new List<Stone>();
             m_enemies = new List<GameObject>();
-            
+            m_targetBoxes = new List<GameObject>();
             GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in m_foundEnemies)
             {
@@ -71,14 +62,32 @@ namespace Golf
                 enemy.SetActive(false);
             }
             
-            m_targetBoxes = new List<GameObject>();
-            
             GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
             foreach (GameObject target in m_foundTargetBoxes)
             {
                 m_targetBoxes.Add(target);
                 target.SetActive(true);
             }
+        }
+
+        public void Initialize()
+        {
+            
+            m_trainingOver.SetActive(false);
+            
+            m_currentMissedCount = m_missedCount;
+            m_currentSpawnRate = m_spawnRate;
+            
+            foreach (GameObject enemy in m_enemies)
+            {
+                enemy.SetActive(false);
+            }
+            
+            foreach (GameObject target in m_targetBoxes)
+            {
+                target.SetActive(true);
+            }
+            
         }
         
         private void Update()
@@ -124,7 +133,7 @@ namespace Golf
            {
                m_scoreManager.ComboIncrease();
            }
-           else m_scoreManager.Increase(stone.score);
+           else m_scoreManager.Increase();
            
            if (m_stones.Count % 5 == 0)
            {
@@ -176,6 +185,14 @@ namespace Golf
                 }
                
                 m_stones.Clear();
+                
+                //m_isTraining = false;
+        
+                //m_isWinner = false;
+        
+               // m_zombiesAttack =  false;
+
+                //m_isSpawn = true;
             }
         }
 
@@ -213,10 +230,37 @@ namespace Golf
                 {
                     m_isWinner = true;
                     Debug.Log("YOU WON!");
+                    
                     Finished?.Invoke();
                 
                     m_isWinner = false;
                     m_zombiesAttack =  false;
+                    
+                    foreach (var item in m_stones)
+                    {
+                        Destroy(item.gameObject);
+                    }
+               
+                    m_stones.Clear();
+                    
+                    foreach (GameObject enemy in m_enemies)
+                    {
+                        enemy.SetActive(true);
+                    }
+            
+                    foreach (GameObject target in m_targetBoxes)
+                    {
+                        target.SetActive(true);
+                    }
+                    
+                    
+                    //m_isTraining = false;
+        
+                    //m_isWinner = false;
+        
+                    //m_zombiesAttack =  false;
+
+                    //m_isSpawn = true;
                 }
             }
         }
@@ -250,6 +294,43 @@ namespace Golf
             }
             
             m_zombiesAttack =  true;
+        }
+
+        public void GameOver()
+        {
+            
+            Finished?.Invoke();
+            
+            foreach (GameObject enemy in m_enemies)
+            {
+                enemy.SetActive(true);
+            }
+            
+            foreach (GameObject target in m_targetBoxes)
+            {
+                target.SetActive(true);
+            }
+            
+            foreach (var item in m_stones)
+            {
+                Destroy(item.gameObject);
+            }
+               
+            m_stones.Clear();
+            
+            //m_isTraining = false;
+        
+            //m_isWinner = false;
+        
+            //m_zombiesAttack =  false;
+
+            //m_isSpawn = true;
+        }
+
+        public static void RestartLevel()
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
         }
     }
 }

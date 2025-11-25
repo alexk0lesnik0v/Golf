@@ -4,7 +4,7 @@ namespace Old
 {
     public class CloudController : MonoBehaviour
     {
-        [SerializeField] private Transform[] m_people;
+        /*[SerializeField] private Transform[] m_people;
         [SerializeField] private float m_speed = 2;
 
         private bool m_isMove;
@@ -45,6 +45,7 @@ namespace Old
                 m_isMove = false;
             }
         }
+        */
     }
 }
 

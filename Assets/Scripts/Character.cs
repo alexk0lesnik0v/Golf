@@ -4,6 +4,7 @@ namespace Golf
 {
     public class Character : MonoBehaviour
     {
+        [SerializeField] private LevelController m_levelController;
         [SerializeField] [Min(0)] private float m_speed = 100;
         
         private bool m_isRight;
@@ -45,6 +46,14 @@ namespace Golf
             m_isStop = true;
             m_isRight = false;
             m_isLeft = false;
+        }
+        
+        public void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.CompareTag("Enemy"))
+            {
+                m_levelController.GameOver();
+            }
         }
     }
 }

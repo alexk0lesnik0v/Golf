@@ -38,7 +38,7 @@ namespace Golf
             }
         }
 
-        public void Increase(int value) => score += value;
+        public void Increase() => score ++;
         
         public void BonusIncrease() => score += 2;
         

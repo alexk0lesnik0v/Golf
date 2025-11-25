@@ -19,7 +19,7 @@ namespace Old
 
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                m_cloudController.MoveNext();
+                ///m_cloudController.MoveNext();
             }
         
             if (Input.GetKeyDown(KeyCode.Space))
