@@ -21,6 +21,8 @@ namespace Golf
         private int m_currentMissedCount;
         
         private List<GameObject> m_enemies;
+
+        private List<GameObject> m_targetBoxes;
         
         private int m_currentHitCount;
         
@@ -40,18 +42,13 @@ namespace Golf
         {
             m_stones = new List<Stone>();
             m_enemies = new List<GameObject>();
+            m_targetBoxes = new List<GameObject>();
         }
 
         public void Initialize()
         {
             m_currentMissedCount = m_missedCount;
             m_currentSpawnRate = m_spawnRate;
-
-            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in m_foundEnemies)
-            {
-                m_enemies.Add(enemy);
-            }
         }
         
         private void Update()
@@ -154,7 +151,24 @@ namespace Golf
 
         private void WinningController()
         {
-            m_enemies.Clear();
+            m_targetBoxes?.Clear();
+            
+            GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
+            foreach (GameObject target in m_foundTargetBoxes)
+            {
+                m_targetBoxes.Add(target);
+            }
+            
+            if (m_targetBoxes.Count == 0)
+            {
+                m_isWinner = true;
+                Debug.Log("YOU WON!");
+                Finished?.Invoke();
+                
+                m_isWinner = false;
+            }
+            
+            m_enemies?.Clear();
             
             GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in m_foundEnemies)

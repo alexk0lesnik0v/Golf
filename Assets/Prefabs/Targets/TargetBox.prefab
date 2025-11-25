@@ -152,3 +152,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb22edd2801579a48a7c480060ec090d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.TargetBox
+  m_scoreManager: {fileID: 0}

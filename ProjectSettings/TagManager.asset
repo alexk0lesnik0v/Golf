@@ -7,6 +7,7 @@ TagManager:
   - GoldStone
   - DecreaseStone
   - Enemy
+  - Target
   layers:
   - Default
   - TransparentFX
