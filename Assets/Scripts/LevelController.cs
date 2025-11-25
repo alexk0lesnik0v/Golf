@@ -165,8 +165,10 @@ namespace Golf
             if (m_enemies.Count == 0)
             {
                 m_isWinner = true;
-                Debug.Log("YOU WIN!");
+                Debug.Log("YOU WON!");
                 Finished?.Invoke();
+                
+                m_isWinner = false;
             }
         }
     }

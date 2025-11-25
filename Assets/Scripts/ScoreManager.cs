@@ -47,6 +47,8 @@ namespace Golf
         public void GoldComboIncrease() => score += 6;
 
         public void UpdateRecord() => record = score;
+        
+        public void TargetBoxIncrease() => score += 10;
 
         public void Decrease()
         {
