@@ -51,6 +51,16 @@ namespace Golf
        
         private void Awake()
         {
+            
+        }
+
+        public void Initialize()
+        {
+            m_trainingOver.SetActive(false);
+            
+            m_currentMissedCount = m_missedCount;
+            m_currentSpawnRate = m_spawnRate;
+            
             m_stones = new List<Stone>();
             m_enemies = new List<GameObject>();
             
@@ -62,14 +72,13 @@ namespace Golf
             }
             
             m_targetBoxes = new List<GameObject>();
-        }
-
-        public void Initialize()
-        {
-            m_trainingOver.SetActive(false);
             
-            m_currentMissedCount = m_missedCount;
-            m_currentSpawnRate = m_spawnRate;
+            GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
+            foreach (GameObject target in m_foundTargetBoxes)
+            {
+                m_targetBoxes.Add(target);
+                target.SetActive(true);
+            }
         }
         
         private void Update()

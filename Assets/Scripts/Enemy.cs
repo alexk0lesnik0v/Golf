@@ -5,12 +5,14 @@ namespace Golf
 {
     public class Enemy : MonoBehaviour
     {
+        [SerializeField] private ScoreManager m_scoreManager;
         [SerializeField] private int m_health = 3;
         
         private GameObject m_player;
         private NavMeshAgent m_agent;
         void Start()
         {
+            this.gameObject.SetActive(true);
             m_player =  GameObject.FindGameObjectWithTag("Player");
             m_agent = GetComponent<NavMeshAgent>();
         }
@@ -21,7 +23,8 @@ namespace Golf
 
             if (m_health <= 0)
             {
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
+                m_scoreManager.EnemyIncrease();
             }
         }
         

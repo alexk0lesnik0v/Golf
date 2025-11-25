@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: 1427085913586219975}
   - component: {fileID: 2021828911831456431}
   - component: {fileID: 4500036530451178407}
-  - component: {fileID: 8908846550023876408}
+  - component: {fileID: -8812625473856389699}
   m_Layer: 0
   m_Name: BigZombi
   m_TagString: Enemy
@@ -1901,7 +1901,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8908846550023876408
+--- !u!114 &-8812625473856389699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1913,6 +1913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e145a777886414481da600294e1942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Enemy
+  m_scoreManager: {fileID: 0}
   m_health: 3
 --- !u!1 &6804800829408632717
 GameObject:

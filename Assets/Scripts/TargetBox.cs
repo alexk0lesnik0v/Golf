@@ -5,11 +5,17 @@ namespace Golf
     public class TargetBox : MonoBehaviour
     {
         [SerializeField] private ScoreManager m_scoreManager;
+
+        private void Start()
+        {
+            this.gameObject.SetActive(true);
+        }
+        
         public void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
                 m_scoreManager.TargetBoxIncrease();
             }
         }

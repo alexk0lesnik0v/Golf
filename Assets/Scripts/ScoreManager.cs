@@ -49,6 +49,8 @@ namespace Golf
         public void UpdateRecord() => record = score;
         
         public void TargetBoxIncrease() => score += 10;
+        
+        public void EnemyIncrease() => score += 20;
 
         public void Decrease()
         {
