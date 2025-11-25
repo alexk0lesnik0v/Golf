@@ -11,7 +11,7 @@ namespace Golf
         public event Action<int> HitChanged;
         
         [SerializeField] private int m_missedCount;
-        [SerializeField] [Min(0)] private float m_spawnRate = 1;
+        [SerializeField] [Min(0)] private float m_spawnRate = 1.5f;
         [SerializeField] private StoneSpawner m_stoneSpawner;
         [SerializeField] private ScoreManager m_scoreManager;
         
@@ -90,11 +90,11 @@ namespace Golf
            
            if (m_stones.Count % 5 == 0)
            {
-               if (m_currentSpawnRate > 0.2f)
+               if (m_currentSpawnRate > 0.1f)
                {
-                   m_currentSpawnRate -= 0.2f;
+                   m_currentSpawnRate -= 0.1f;
                }
-               else m_currentSpawnRate = 0.2f;
+               else m_currentSpawnRate = 0.1f;
            }
         }
         
