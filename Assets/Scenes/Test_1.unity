@@ -7149,7 +7149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119430675237397554, guid: 23a8fdc4c37bcbf43b0bf8f5d3331b09, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Target
       objectReference: {fileID: 0}
     - target: {fileID: 5908315696193148413, guid: 23a8fdc4c37bcbf43b0bf8f5d3331b09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15954,7 +15954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4119430675237397554, guid: 23a8fdc4c37bcbf43b0bf8f5d3331b09, type: 3}
       propertyPath: m_TagString
-      value: Target
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5908315696193148413, guid: 23a8fdc4c37bcbf43b0bf8f5d3331b09, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20241,7 +20241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Golf.LavelController
   m_trainingOver: {fileID: 605063747}
   m_playButton: {fileID: 1660488389}
-  m_missedCount: 1000
+  m_missedCount: 10
   m_spawnRate: 1.5
   m_stoneSpawner: {fileID: 953732923}
   m_scoreManager: {fileID: 8746104}

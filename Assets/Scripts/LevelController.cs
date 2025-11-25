@@ -16,7 +16,7 @@ namespace Golf
         [SerializeField] private GameObject m_trainingOver;
         [SerializeField] private Button m_playButton;
         
-        [SerializeField] private int m_missedCount;
+        [SerializeField] private int m_missedCount = 10;
         [SerializeField] [Min(0)] private float m_spawnRate = 1.5f;
         [SerializeField] private StoneSpawner m_stoneSpawner;
         [SerializeField] private ScoreManager m_scoreManager;
