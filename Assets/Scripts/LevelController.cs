@@ -53,19 +53,12 @@ namespace Golf
             m_stones = new List<Stone>();
             m_enemies = new List<GameObject>();
             m_targetBoxes = new List<GameObject>();
-            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (GameObject enemy in m_foundEnemies)
-            {
-                m_enemies.Add(enemy);
-                enemy.SetActive(false);
-            }
             
-            GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
-            foreach (GameObject target in m_foundTargetBoxes)
-            {
-                m_targetBoxes.Add(target);
-                target.SetActive(true);
-            }
+            FindZombies();
+            SetActiveFalseZombies();
+            
+            FindTarget();
+            SetActiveTrueTarget();
         }
 
         public void Initialize()
@@ -76,15 +69,9 @@ namespace Golf
             m_currentMissedCount = m_missedCount;
             m_currentSpawnRate = m_spawnRate;
             
-            foreach (GameObject enemy in m_enemies)
-            {
-                enemy.SetActive(false);
-            }
+            SetActiveFalseZombies();
             
-            foreach (GameObject target in m_targetBoxes)
-            {
-                target.SetActive(true);
-            }
+            SetActiveTrueTarget();
             
         }
         
@@ -177,12 +164,7 @@ namespace Golf
                 Debug.Log("Game Over");
                 Finished?.Invoke();
 
-                foreach (var item in m_stones)
-                {
-                    Destroy(item.gameObject);
-                }
-               
-                m_stones.Clear();
+                DestroyStones();
             }
         }
 
@@ -192,11 +174,7 @@ namespace Golf
             {
                 m_targetBoxes?.Clear();
             
-                GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
-                foreach (GameObject target in m_foundTargetBoxes)
-                {
-                    m_targetBoxes.Add(target);
-                }
+                FindTarget();
             
                 if (m_targetBoxes.Count == 0)
                 {
@@ -210,11 +188,7 @@ namespace Golf
             {
                 m_enemies?.Clear();
             
-                GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-                foreach (GameObject enemy in m_foundEnemies)
-                {
-                    m_enemies.Add(enemy);
-                }
+                FindZombies();
             
                 if (m_enemies.Count == 0)
                 {
@@ -226,22 +200,11 @@ namespace Golf
                     m_isWinner = false;
                     m_zombiesAttack =  false;
                     
-                    foreach (var item in m_stones)
-                    {
-                        Destroy(item.gameObject);
-                    }
-               
-                    m_stones.Clear();
-                    
-                    foreach (GameObject enemy in m_enemies)
-                    {
-                        enemy.SetActive(true);
-                    }
+                    DestroyStones();
+
+                    SetActiveTrueZombies();
             
-                    foreach (GameObject target in m_targetBoxes)
-                    {
-                        target.SetActive(true);
-                    }
+                    SetActiveTrueTarget();
                 }
             }
         }
@@ -252,12 +215,7 @@ namespace Golf
             m_trainingOver.SetActive(true);
             m_playButton.onClick.AddListener(onClicked);
             
-            foreach (var item in m_stones)
-            {
-                Destroy(item.gameObject);
-            }
-               
-            m_stones.Clear();
+            DestroyStones();
         }
         
         private void onClicked()
@@ -268,11 +226,8 @@ namespace Golf
             m_missedCount = 1000;
             
             m_isSpawn = true;
-            
-            foreach (GameObject enemy in m_enemies)
-            {
-                enemy.SetActive(true);
-            }
+
+            SetActiveTrueZombies();
             
             m_zombiesAttack =  true;
         }
@@ -282,21 +237,62 @@ namespace Golf
 
             Finished?.Invoke();
 
+            SetActiveTrueZombies();
+
+            SetActiveTrueTarget();
+
+            DestroyStones();
+        }
+
+        private void FindZombies()
+        {
+            GameObject[] m_foundEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (GameObject enemy in m_foundEnemies)
+            {
+                m_enemies.Add(enemy);
+            }
+        }
+        
+        private void FindTarget()
+        {
+            GameObject[] m_foundTargetBoxes = GameObject.FindGameObjectsWithTag("Target");
+            foreach (GameObject target in m_foundTargetBoxes)
+            {
+                m_targetBoxes.Add(target);
+            }
+        }
+
+        private void SetActiveTrueZombies()
+        {
             foreach (GameObject enemy in m_enemies)
             {
                 enemy.SetActive(true);
             }
-
+        }
+        
+        private void SetActiveFalseZombies()
+        {
+            foreach (GameObject enemy in m_enemies)
+            {
+                enemy.SetActive(false);
+            }
+        }
+        
+        private void SetActiveTrueTarget()
+        {
             foreach (GameObject target in m_targetBoxes)
             {
                 target.SetActive(true);
             }
+        }
 
+        private void DestroyStones()
+        {
             foreach (var item in m_stones)
             {
                 Destroy(item.gameObject);
             }
-
+               
             m_stones.Clear();
         }
     }
