@@ -134,13 +134,7 @@ namespace Golf
             
             WinningController();
         }
-
-        private void UnsubscribeStoneEnemy(Stone stone)
-        {
-            stone.HitEnemy -= OnHitEnemy;
-            stone.MissedEnemy -= OnMissedEnemy;
-        }
-
+        
         private void OnMissedEnemy(Stone stone)
         {
             UnsubscribeStoneEnemy(stone);
@@ -214,6 +208,12 @@ namespace Golf
         {
             stone.HitStone -= OnHitStone;
             stone.MissedStone -= OnMissedStone;
+        }
+        
+        private void UnsubscribeStoneEnemy(Stone stone)
+        {
+            stone.HitEnemy -= OnHitEnemy;
+            stone.MissedEnemy -= OnMissedEnemy;
         }
         
         private void FinishedController()
