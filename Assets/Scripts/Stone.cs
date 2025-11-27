@@ -45,14 +45,13 @@ namespace Golf
            {
                HitStone?.Invoke(this);
            }
+           else if (other.gameObject.GetComponent<Enemy>())
+           {
+               HitEnemy?.Invoke(this);
+           }
            else
            {
                MissedStone?.Invoke(this);
-           }
-           
-           if (other.gameObject.GetComponent<Enemy>())
-           {
-               HitEnemy?.Invoke(this);
            }
        }
 
