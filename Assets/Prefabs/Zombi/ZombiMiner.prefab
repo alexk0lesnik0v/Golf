@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e145a777886414481da600294e1942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Enemy
-  m_health: 3
+  m_health: 1
 --- !u!1 &766937255591833488
 GameObject:
   m_ObjectHideFlags: 0

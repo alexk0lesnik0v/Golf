@@ -1,21 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace Golf
 {
     public class TargetBox : MonoBehaviour
     {
+        public event Action<TargetBox> TargetDestroyed;
+        
         [SerializeField] private ScoreManager m_scoreManager;
-
-        private void Start()
-        {
-            this.gameObject.SetActive(true);
-        }
         
         public void OnCollisionEnter(Collision other)
         {
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
-                this.gameObject.SetActive(false);
+                TargetDestroyed?.Invoke(this);
+                Destroy(this.gameObject);
                 m_scoreManager.TargetBoxIncrease();
             }
         }

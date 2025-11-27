@@ -21,7 +21,7 @@ namespace Golf
         [SerializeField] [Min(0)] private float m_spawnEnemyRate = 5f;
         [SerializeField] private StoneSpawner m_stoneSpawner;
         [SerializeField] private EnemySpawner[] m_enemySpawner;
-        [SerializeField] [Min(1)] private int m_maxEnemies = 10;
+        [SerializeField] [Min(1)] private int m_maxEnemies = 5;
         [SerializeField] private ScoreManager m_scoreManager;
         [SerializeField] private TargetBox[] m_targetBox;
         
@@ -35,6 +35,8 @@ namespace Golf
         private int m_currentHitEnemyCount;
         private List<Stone> m_stones;
         private List<Enemy> m_enemies;
+        private int m_targetBoxesCount;
+        private int m_enemiesCount;
         
         private bool m_isEnemySpawn =  false;
 
@@ -73,6 +75,13 @@ namespace Golf
             m_currentMissedStoneCount = m_missedCount;
             m_currentStoneSpawnRate = m_spawnStoneRate;
             m_currentEnemySpawnRate = m_spawnEnemyRate;
+            
+            m_targetBoxesCount = m_targetBox.Length;
+
+            foreach (TargetBox targetBox in m_targetBox)
+            {
+                targetBox.TargetDestroyed += OnTargetDestroyed;
+            }
         }
         
         private void Update()
@@ -103,15 +112,15 @@ namespace Golf
                 {
                     Enemy enemy = enemySpawner.Spawn();
                     m_enemies.Add(enemy);
+                    m_enemiesCount++;
                     m_enemySpawnController++;
+                    if (m_enemySpawnController == m_maxEnemies)
+                    {
+                        m_isEnemySpawn = false;
+                    }
                 }
                 
                 m_enemyTime = 0;
-
-                if (m_enemySpawnController == m_maxEnemies)
-                {
-                    m_isEnemySpawn = false;
-                }
             }
         }
 
@@ -119,6 +128,7 @@ namespace Golf
         {
             UnsubscribeStone(stone);
             m_currentHitEnemyCount++;
+            m_enemiesCount--;
             
             m_scoreManager.EnemyIncrease();
             
@@ -166,8 +176,6 @@ namespace Golf
                }
                else m_currentStoneSpawnRate = 0.1f;
            }
-           
-           TreiningController();
         }
         
         private void OnMissedStone(Stone stone)
@@ -185,6 +193,13 @@ namespace Golf
             }
             
             FinishedController();
+        }
+        
+        private void OnTargetDestroyed(TargetBox targetBox)
+        {
+            m_targetBoxesCount--;
+            
+            targetBox.TargetDestroyed -= OnTargetDestroyed;
             
             TreiningController();
         }
@@ -208,7 +223,7 @@ namespace Golf
         
         private void TreiningController()
         {
-            if (m_targetBox.Length == 0)
+            if (m_targetBoxesCount == 0)
             {
                 Debug.Log("Training is over!");
                 EnemyAttack();
@@ -217,7 +232,7 @@ namespace Golf
         
         private void WinningController()
         {
-            if (m_enemies.Count == 0)
+            if (m_enemiesCount == 0)
             {
                 Victory();
             }
@@ -240,8 +255,6 @@ namespace Golf
             m_isStoneSpawn = false;
             m_trainingOver.SetActive(true);
             m_playButton.onClick.AddListener(onClicked);
-            
-            DestroyStones();
         }
         
         private void onClicked()
@@ -253,16 +266,6 @@ namespace Golf
             
             m_isStoneSpawn = true;
             m_isEnemySpawn = true;
-        }
-
-        private void DestroyStones()
-        {
-            foreach (var item in m_stones)
-            {
-                Destroy(item.gameObject);
-            }
-               
-            m_stones.Clear();
         }
     }
 }
