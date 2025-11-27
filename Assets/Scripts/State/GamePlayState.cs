@@ -9,6 +9,7 @@ namespace Golf
     {
         [SerializeField] private TextMeshProUGUI m_scoreText;
         [SerializeField] private TextMeshProUGUI m_comboText;
+        [SerializeField] private TextMeshProUGUI m_comboKillText;
 
         [SerializeField] private GameObject m_gameplayPanel;
         [SerializeField] private ScoreManager m_scoreManager;
@@ -21,6 +22,7 @@ namespace Golf
         {
             m_gameplayPanel.SetActive(false);
             m_comboText.gameObject.SetActive(false);
+            m_comboKillText.gameObject.SetActive(false);
             m_gameStateMachine = gameStateMachine;
         }
         
@@ -32,26 +34,28 @@ namespace Golf
             OnScoreChanged(m_scoreManager.score);
             m_gameplayPanel.SetActive(true);
             
-            m_levelController.HitChanged += OnHitChanged;
-            OnHitChanged(m_levelController.currentHitCount);
+            m_levelController.HitStoneChanged += OnHitStoneChanged;
+            OnHitStoneChanged(m_levelController.currentHitStoneCount);
+            
+            m_levelController.HitEnemyChanged += OnHitEnemyChanged;
+            OnHitEnemyChanged(m_levelController.currentHitEnemyCount);
             
             m_levelController.enabled = true;
             m_playerController.enabled = true;
             
             m_levelController.Initialize();
             m_levelController.Finished += OnFinished;
+            m_levelController.Winner += OnWinner;
+        }
+
+        private void OnWinner()
+        {
+            m_gameStateMachine.Enter<WinnerState>();
         }
 
         private void OnFinished()
         {
-            if (m_levelController.m_isWinner)
-            {
-                m_gameStateMachine.Enter<WinnerState>();
-            }
-            else
-            {
-                m_gameStateMachine.Enter<GameOverState>();
-            }
+            m_gameStateMachine.Enter<GameOverState>();
         }
 
         public override void Exit()
@@ -61,16 +65,17 @@ namespace Golf
             m_gameplayPanel.SetActive(false);
             m_comboText.gameObject.SetActive(false);
             m_levelController.Finished -= OnFinished;
+            m_levelController.Winner -= OnWinner;
         }
 
         private void OnScoreChanged(int score) => 
             m_scoreText.text = score.ToString();
 
-        private void OnHitChanged(int currentHitCount)
+        private void OnHitStoneChanged(int currentHitStoneCount)
         {
-            if (currentHitCount >= 3)
+            if (currentHitStoneCount >= 3)
             {
-                m_comboText.text = "combo X" + currentHitCount.ToString();
+                m_comboText.text = "combo X" + currentHitStoneCount.ToString();
                 m_comboText.gameObject.SetActive(true);
             }
             else
@@ -78,5 +83,18 @@ namespace Golf
                 m_comboText.gameObject.SetActive(false);
             }
         } 
+        
+        private void OnHitEnemyChanged(int currentHitEnemyCount)
+        {
+            if (currentHitEnemyCount >= 3)
+            {
+                m_comboKillText.text = "combo kill X" + currentHitEnemyCount.ToString();
+                m_comboKillText.gameObject.SetActive(true);
+            }
+            else
+            {
+                m_comboKillText.gameObject.SetActive(false);
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace Golf
 {
     public class Enemy : MonoBehaviour
     {
-        [SerializeField] private ScoreManager m_scoreManager;
+        //[SerializeField] private ScoreManager m_scoreManager;
         [SerializeField] private int m_health = 1;
         
         private GameObject m_player;
@@ -24,8 +24,7 @@ namespace Golf
 
             if (m_health <= 0)
             {
-                m_scoreManager.EnemyIncrease();
-                this.gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
         

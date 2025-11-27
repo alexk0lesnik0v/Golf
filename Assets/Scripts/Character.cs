@@ -50,7 +50,7 @@ namespace Golf
         
         public void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.gameObject.GetComponent<Enemy>())
             {
                 m_levelController.GameOver();
             }
