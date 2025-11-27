@@ -44,14 +44,7 @@ namespace Golf
 
         private void OnFinished()
         {
-            if (m_levelController.m_isWinner)
-            {
-                m_gameStateMachine.Enter<WinnerState>();
-            }
-            else
-            {
-                m_gameStateMachine.Enter<GameOverState>();
-            }
+            m_gameStateMachine.Enter<GameOverState>();
         }
 
         public override void Exit()

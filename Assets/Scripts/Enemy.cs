@@ -24,8 +24,7 @@ namespace Golf
 
             if (m_health <= 0)
             {
-                m_scoreManager.EnemyIncrease();
-                this.gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
         

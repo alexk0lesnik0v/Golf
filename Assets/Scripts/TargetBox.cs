@@ -16,7 +16,7 @@ namespace Golf
             if (other.gameObject.TryGetComponent<Stone>(out var stone))
             {
                 this.gameObject.SetActive(false);
-                m_scoreManager.TargetBoxIncrease();
+               // m_scoreManager.TargetBoxIncrease();
             }
         }
     }

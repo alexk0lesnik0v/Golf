@@ -4,7 +4,7 @@ namespace Golf
 {
     public class Stick : MonoBehaviour
     {
-        [SerializeField] [Min(0)] private float m_power = 250;
+        [SerializeField] [Min(0)] private float m_power = 1500;
         [SerializeField] private Transform m_point;
         [SerializeField] private float m_minAngleZ = -30;
         [SerializeField] private float m_maxAngleZ = 30;

@@ -1799,7 +1799,7 @@ Transform:
   m_GameObject: {fileID: 6750292371817932327}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.51145554, z: -0, w: 0.8593098}
-  m_LocalPosition: {x: 61.955395, y: 21.894556, z: 55.0751}
+  m_LocalPosition: {x: 46.953148, y: 21.956322, z: 55.290524}
   m_LocalScale: {x: 9, y: 9, z: 9}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1914,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Golf.Enemy
   m_scoreManager: {fileID: 0}
-  m_health: 3
+  m_health: 1
 --- !u!1 &6804800829408632717
 GameObject:
   m_ObjectHideFlags: 0
